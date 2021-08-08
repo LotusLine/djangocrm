@@ -1,40 +1,52 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>--- HEllO THERE! ---</title>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/fontawesome.min.css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- Leave those next 4 lines if you care about users using IE8 -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-      
+    {% extends "base.html" %}
+    {% block content %}
+   
+    <section class="text-gray-700 body-font">
+      <div class="container px-5 py-24 mx-auto flex flex-wrap">
+        <div class="w-full mb-6 py-6 flex justify-between items-center border-b border-gray-200">
+          <h1 class="text-4xl text-gray-800">Leads</h1>
+        </div>
+        <div>
+          <a class="text-gray-500 hover:text-blue-500 " href="{% url 'leads:lead-create' %}">Create a new lead</a>
+        </div>     
+        <br>
+        <div class="flex flex-wrap -m-4">
+          {% for lead in leads %}
+          <div class="p-4 lg:w-1/2 md:w-full">
+            <div class="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col">
+              <div class="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-pink-100 text-pink-500 flex-shrink-0">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-8 h-8" viewBox="0 0 24 24">
+                  <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                </svg>
+              </div>
+              <div class="flex-grow">
+                <h2 class="text-gray-900 text-lg title-font font-medium mb-3">
+                  {{ lead.first_name }} {{ lead.last_name }}</h2>
+                <p class="leading-relaxed text-base"> 
+                  Age of our lead is : {{ lead.age }}</p>
+                <a class="mt-3 text-pink-500 inline-flex items-center">
+                  View this lead
+                  <a href="{% url 'leads:lead-detail' lead.pk %}">
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    {% endblock %}
 
    
-      <h1>Hello World</h1>
+  
+      
 
-      <p>Our leads are :</p>
+      
  
-        {% for lead in leads %}
-          <div>
-          <a href="{{ lead.pk }}/">{{ lead.first_name }} {{ lead.last_name }}</a> with the golden ages of {{ lead.age }}
-        </div>
-        {% endfor %}
-
-
-
-    <!-- Including Bootstrap JS (with its jQuery dependency) so that dynamic components work -->
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  </body>
-</html>
+ 
+       
+     

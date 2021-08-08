@@ -1,36 +1,41 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>--- HEllO THERE! ---</title>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/fontawesome.min.css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- Leave those next 4 lines if you care about users using IE8 -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-      
-
-    <a href="/leads"> Go back to leads </a>
-    <br>
-    <br>
+{% extends "base.html" %}
+{% block content %}
+<section class="text-gray-1000 body-font overflow-hidden">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="lg:w-4/5 mx-auto flex flex-wrap">
+      <div class="lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
+        <h2 class="text-sm title-font text-gray-700 tracking-widest">LEAD</h2>
+        <h1 class="text-gray-900 text-3xl title-font font-medium mb-4">{{ lead.first_name }} {{ lead.last_name }}</h1>
+        <div class="flex mb-4">
+          <a class="flex-grow text-pink-500 border-b-2 border-pink-500 py-2 text-lg px-1">Description</a>
+          <a class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">Reviews</a>
+          <a href="{% url 'leads:lead-update' lead.pk %}" class="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1">Update</a>
+        </div>
+        <p class="leading-relaxed mb-4">Description of the lead</p>
+        <div class="flex border-t border-gray-200 py-2">
+          <span class="text-gray-500">Age</span>
+          <span class="ml-auto text-gray-900">{{ lead.age }}</span>
+        </div>
+        <div class="flex border-t border-gray-200 py-2">
+          <span class="text-gray-500">Location</span>
+          <span class="ml-auto text-gray-900">Dummy Location</span>
+        </div>
+        <div class="flex border-t border-b mb-6 border-gray-200 py-2">
+          <span class="text-gray-500">Cellphone</span>
+          <span class="ml-auto text-gray-900">+46 506805+69</span>
+        </div>
+        <div class="flex">
+          <button a href="{% url 'leads:lead-delete' lead.pk %}" class="flex ml-auto text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Delete</button>
+          <br>
+          <button a href="{% url 'leads:lead-list' %}" class="flex ml-auto text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded">Go back to leads</button>
   
-     
-    <p>This is the details of: {{ lead.first_name }} </p>
- 
 
-
-    <!-- Including Bootstrap JS (with its jQuery dependency) so that dynamic components work -->
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  </body>
-</html>
+        </div>
+      </div>
+      <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="https://dummyimage.com/400x400">
+    </div>
+  </div>
+</section>
+   
+{% endblock %}
